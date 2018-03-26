@@ -14,6 +14,8 @@ public class GeneralManager : MonoBehaviour {
     {
         m_PSM = GetComponent<PlaySequenceManager>();
         m_yInputCount = 0;
+
+        LoadCrossHair();
     }
 
     void Update()
@@ -21,7 +23,7 @@ public class GeneralManager : MonoBehaviour {
         // Start sequence: Y_manette ou A_clavier
         if ((Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetKeyDown(KeyCode.A)) && !m_PSM.GetIsRunning())
         {
-
+            /*
             if (m_yInputCount == 0)
             {
                 Debug.Log("A/Y = 1");
@@ -39,6 +41,10 @@ public class GeneralManager : MonoBehaviour {
                 Debug.Log("A/Y > 2");
                 return;
             }
+            */
+
+            LoadGun();
+            StartCoroutine(m_PSM.FirstStep());
         }
 
         // Quitter: Back_manette ou Echap_clavier
@@ -56,6 +62,12 @@ public class GeneralManager : MonoBehaviour {
         shotGun.transform.parent = gunNode;
         shotGun.transform.localPosition = new Vector3(0, 0, 0);
         shotGun.transform.localRotation = Quaternion.identity;
+
+    }
+
+    void LoadCrossHair()
+    {
+        Transform gunNode = GameObject.Find("GunNode").transform;
 
         GameObject crossHair = Instantiate(m_crosshair, gunNode);
         crossHair.transform.parent = gunNode;
