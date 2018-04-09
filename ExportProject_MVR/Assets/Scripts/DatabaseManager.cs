@@ -7,7 +7,7 @@ public class DatabaseManager : MonoBehaviour {
 
 	void Start ()
     {
-        m_list = new List<int>() {1,1,1,2,2,2,3,3,3,4,4,4};
+        m_list = new List<int>() {1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3,4,4,4,4,4,4};
         m_list = FisherYatesShuffle(m_list);
 	}
 

@@ -5,6 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Car_MVR.unity
     guid: 930033c1bd81d1b48a0cbe8e0bce4f27
+  - enabled: 1
+    path: Assets/Scenes/Car_MVR_Baked.unity
+    guid: b96178a48ac6570448b1c6a4343babbb
+  - enabled: 0
+    path: Assets/Scenes/Car_MVR_Baked_CustomLag.unity
+    guid: b6bd432789507a84ea0dcf65f9507fb6
