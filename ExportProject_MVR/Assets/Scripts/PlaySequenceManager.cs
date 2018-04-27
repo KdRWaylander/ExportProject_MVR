@@ -28,6 +28,7 @@ public class PlaySequenceManager : MonoBehaviour {
 	public IEnumerator FirstStep(){
         m_isRunning = true;                                                         // Prevent 2nd sequence to be launched in parallel
         m_lastIteration = false;                                                    // Reset last iteration bool just in case
+        m_targetManager.LockTargets();
         StartCoroutine(m_HUD.DisplayStartSequence());                               // 3-2-1 sequence
         yield return new WaitForSeconds(3);                                         // Wait for start sequence end
 

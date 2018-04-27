@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GeneralManager : MonoBehaviour {
     PlaySequenceManager     m_PSM;
+    OutputWriter            m_OutputWriter;
 
     [SerializeField] GameObject m_shotgun;
     [SerializeField] GameObject m_crosshair;
@@ -13,6 +14,7 @@ public class GeneralManager : MonoBehaviour {
     void Start ()
     {
         m_PSM = GetComponent<PlaySequenceManager>();
+        m_OutputWriter = GetComponent<OutputWriter>();
         m_yInputCount = 0;
 
         LoadCrossHair();
@@ -23,25 +25,8 @@ public class GeneralManager : MonoBehaviour {
         // Start sequence: Y_manette ou A_clavier
         if ((Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetKeyDown(KeyCode.A)) && !m_PSM.GetIsRunning())
         {
-            /*
-            if (m_yInputCount == 0)
-            {
-                Debug.Log("A/Y = 1");
-                m_yInputCount++;
-                LoadGun();
-            }
-            else if (m_yInputCount == 1)
-            {
-                Debug.Log("A/Y = 2");
-                m_yInputCount++;
-                StartCoroutine(m_PSM.FirstStep());
-            }
-            else
-            {
-                Debug.Log("A/Y > 2");
-                return;
-            }
-            */
+            if (m_OutputWriter.GetRecord())
+                m_OutputWriter.CreateFile();
 
             LoadGun();
             StartCoroutine(m_PSM.FirstStep());

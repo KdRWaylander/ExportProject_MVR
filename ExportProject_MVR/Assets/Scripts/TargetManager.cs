@@ -7,7 +7,7 @@ public class TargetManager : MonoBehaviour {
 
     void Start()
     {
-        LockTargets();
+        //LockTargets();
     }
 
     /* METHODS */

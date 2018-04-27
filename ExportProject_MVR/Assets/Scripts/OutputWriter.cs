@@ -21,7 +21,7 @@ public class OutputWriter : MonoBehaviour {
             + DateTime.Now.Hour.ToString() + "h"
             + GetFormatedMinutes() + ".txt");
 
-        CreateFile();
+        //CreateFile();
     }
 
     /* PUBLIC METHODS */

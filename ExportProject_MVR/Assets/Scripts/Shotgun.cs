@@ -11,6 +11,8 @@ public class Shotgun : MonoBehaviour
     HUDManager m_HUD;
     MatrixCalculation m_matrixCalculation;
 
+    Renderer m_CrosshairRenderer;
+
     [SerializeField] GameObject m_impactGameobject;
 
     void Start()
@@ -21,6 +23,8 @@ public class Shotgun : MonoBehaviour
         m_matrixCalculation = GameObject.Find("GeneralManager").GetComponent<MatrixCalculation>();
         m_targetManager = GameObject.Find("TARGETS").GetComponent<TargetManager>();
         m_HUD = GameObject.Find("HUD").GetComponent<HUDManager>();
+
+        m_CrosshairRenderer = GameObject.Find("Crosshair").GetComponent<Renderer>();
     }
 
     void Update()
@@ -42,8 +46,9 @@ public class Shotgun : MonoBehaviour
             if (hit.transform.tag == "Target")
             {
 
-                // Hide indication
+                // Hide indication and hide crosshair for half a second
                 m_HUD.DisplayTexture(0);
+                StartCoroutine(BlindCrosshair());
 
                 // Re-lock targets so there can only be one shoot
                 m_targetManager.LockTargets();
@@ -90,5 +95,12 @@ public class Shotgun : MonoBehaviour
         m_HUD.DisplayTexture(5);
         yield return new WaitForSeconds(_temporisationTime);
         m_HUD.DisplayTexture(0);
+    }
+
+    IEnumerator BlindCrosshair()
+    {
+        m_CrosshairRenderer.material.color = new Color(m_CrosshairRenderer.material.color.r, m_CrosshairRenderer.material.color.g, m_CrosshairRenderer.material.color.b, 0);
+        yield return new WaitForSeconds(0.5f);
+        m_CrosshairRenderer.material.color = new Color(m_CrosshairRenderer.material.color.r, m_CrosshairRenderer.material.color.g, m_CrosshairRenderer.material.color.b, 1);
     }
 }
